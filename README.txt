@@ -4,12 +4,21 @@ Music visualiser
 Tasks:
 What needs to be done?
     1. Plan an idea for the final project extension (2-3 additional extensions, two of medium complexity and one quite complex)
-    2. Implement the extension for the audio visualiser
+    2. Implement the extension for the audio visualiser:
+    
+    Part 1:
+        1. Plot where and how big to draw the cascading lines.
+        2. Make an array of line objects.
+        3. Draw the lines to the screen every frame, then clear the screen and decrease the y coordinate of the lines.
+        4. If a line reaches the top of the plot, remove it from the array.
+    Part 2:
+        1. 
     3. Make changes and amendments to the extension, record changes in log and as git commits
+        Addition idea: randomise each line added to the array in some way.
     
 How will we know it's done?
     1. Idea choices may be revised once or twice, but the choices will be noted in the logs. Once my partner and I agree on an idea, we will write it down.
-    2. The implementation will be done once we have gone through the video and completed and tested each task.
+    2. The visualisation should work and look as it does in the video.
     3. The changes will be improvements, so maybe making it look better or adding a little more functionality. We will decide on 1 or 2 things to improve.
     
 Who is responsible?
