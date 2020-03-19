@@ -7,8 +7,9 @@ var endY;
 var plotWidth;
 var plotHeight;
 var numFrames;
-var speed;
+var speed = 0.7
 var fourier;
+var play = true;
 
 function preload(){
     music = loadSound('assets/stomper_reggae_bit.mp3');
@@ -25,7 +26,6 @@ function setup() //initialises global variables
     startY = height-endY;
     plotWidth = (width/5)*3;
     plotHeight = (height/5)*3;
-    speed = 0.7;
     fourier = new p5.FFT();
 }
 
@@ -59,6 +59,12 @@ function draw()
 }
 
 function mousePressed(){
+//    if (play){
+//        music.loop();
+//    } else{
+//        music.stop();
+//    }
+//    play = !play;
     music.loop();
 }
 
@@ -70,7 +76,7 @@ function addWave(){ //factory method that generates line arrays and pushes them 
     var bigScale = 40;
     
     for (var i=0; i<wave.length; i++){
-        if (i%20 == 0){
+        if (i%40 == 0){
             var x = map(i, 0, 1024, startX, startX+plotWidth);
             if (i < 1024*0.25 || i > 1024*0.75){
                 var y = map(wave[i], -1, 1, -smallScale, smallScale);
