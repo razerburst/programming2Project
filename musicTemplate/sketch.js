@@ -40,7 +40,7 @@ function draw()
     fill(0);
     stroke(255);
     strokeWeight(2);
-    if (frameCount%numFrames == 0){
+    if (frameCount%numFrames == 0){ //every 10 frames add a line to the array
         addWave();
     }
     
@@ -49,40 +49,39 @@ function draw()
         beginShape();
         for(var j=0; j<l.length; j++){ //second loop iterates through each line array and decreases their y properties by some amount
             l[j].y-=speed;
-            vertex(l[j].x, l[j].y)
+            curveVertex(l[j].x, l[j].y)
         }
         endShape();
-        if (l[0].y < endY){
+        if (l[0].y < endY){ //if the line goes past the top of the plot, remove it from the list
             lines.splice(i, 1);
         }
     }
 }
 
 function mousePressed(){
-//    if (play){
-//        music.loop();
-//    } else{
-//        music.stop();
-//    }
-//    play = !play;
-    music.loop();
+    if (play){
+        music.loop();
+    } else{
+        music.stop();
+    }
+    play = !play;
 }
 
 function addWave(){ //factory method that generates line arrays and pushes them to the output "lines" array
 //    lines.push([{x: startX, y: startY}, {x: startX+plotWidth, y: startY}]);
     var wave = fourier.waveform();
     var outputWave = [];
-    var smallScale = 3;
-    var bigScale = 40;
     
     for (var i=0; i<wave.length; i++){
-        if (i%40 == 0){
+        if (i%40 == 0){ //
             var x = map(i, 0, 1024, startX, startX+plotWidth);
-            if (i < 1024*0.25 || i > 1024*0.75){
-                var y = map(wave[i], -1, 1, -smallScale, smallScale);
+            if (i < 1024*0.5){ //if left half of waveform, increase scale
+                var gradInc = (i/40)*(40/12.8); //gradually increase the scale up to 40
+                var y = map(wave[i], -1, 1, -gradInc, gradInc);
                 outputWave.push({x: x, y: startY + y});
-            } else{
-                var y = map(wave[i], -1, 1, -bigScale, bigScale);
+            } else{ //otherwise decrease scale
+                var gradDec = ((512/40)-((i-512)/40))*(40/12.8); //gradually decrease the scale down to 2
+                var y = map(wave[i], -1, 1, -gradDec, gradDec);
                 outputWave.push({x: x, y: startY + y});
             }
         }

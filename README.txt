@@ -12,9 +12,10 @@ What needs to be done?
         3. Draw the lines to the screen every frame, then clear the screen and decrease the y coordinate of the lines.
         4. If a line reaches the top of the plot, remove it from the array.
     Part 2:
-        1. 
-    3. Make changes and amendments to the extension, record changes in log and as git commits
-        Addition idea: randomise each line added to the array in some way.
+        1. Add animation:
+        2. Change line into wave using vertices in the beginShape() endShape() functions.
+        3. Map the Y position of the vertex to be within a certain scale.
+        4. Increase/decrease the y position.
     
 How will we know it's done?
     1. Idea choices may be revised once or twice, but the choices will be noted in the logs. Once my partner and I agree on an idea, we will write it down.
@@ -34,8 +35,13 @@ When must it be completed?
 
 
 Features implemented (so far):
+-Waves are scaled up greater towards their centres. Instead of there being a sharp increase in scale (from smallScale, 3, to bigScale, 40), it is now more gradual.
+-Music can be turned on/off, simple but convenient feature for testing.
 
 Plans for final project:
+-The parameters for each wave are randomised, dynamically changing graphics
+-Wave less jagged, more sine-wave like
+-Add colour gradient to make it look better
 
 Contingency plan:
 
