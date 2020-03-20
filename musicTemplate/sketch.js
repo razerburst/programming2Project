@@ -78,11 +78,11 @@ function addWave(){ //factory method that generates line arrays and pushes them 
             if (i < 1024*0.5){ //if left half of waveform, increase scale
                 var gradInc = (i/40)*(40/12.8); //gradually increase the scale up to 40
                 var y = map(wave[i], -1, 1, -gradInc, gradInc);
-                outputWave.push({x: x, y: startY + y});
+                outputWave.push({x: x, y: startY + y*2});
             } else{ //otherwise decrease scale
-                var gradDec = ((512/40)-((i-512)/40))*(40/12.8); //gradually decrease the scale down to 2
+                var gradDec = ((512/40)-((i-512)/40))*(40/12.8); //gradually decrease the scale down to 0
                 var y = map(wave[i], -1, 1, -gradDec, gradDec);
-                outputWave.push({x: x, y: startY + y});
+                outputWave.push({x: x, y: startY + y*2});
             }
         }
     }
