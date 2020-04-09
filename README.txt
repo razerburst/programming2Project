@@ -43,6 +43,8 @@ Plans for final project:
 -Wave less jagged, more sine-wave like
 -Add colour gradient to make it look better
 
+-Randomly generated flowers on the screen with colour depending on amplitude and how spread depending on pitch
+
 Contingency plan:
 
 
