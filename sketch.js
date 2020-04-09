@@ -1,9 +1,9 @@
 //global for the controls and input 
-var menu;
+var mainMenu;
 //store visualisations in a container
-var vis = null;
+var vis;
 //variable for the p5 sound object
-var sound = null;
+var sound;
 //variable for p5 fast fourier transform
 var fourier;
 
@@ -14,7 +14,7 @@ function preload() {
 function setup() {
 	 createCanvas(windowWidth, windowHeight);
 	 background(0);
-	 menu = new Menu();
+	 mainMenu = new Menu();
 
 	 //instantiate the fft object
 	 fourier = new p5.FFT();
@@ -30,15 +30,15 @@ function draw() {
 	background(0);
 	//draw the selected visualisation
 	vis.selectedVisual.draw();
-	menu.draw();
+	mainMenu.draw();
 }
 
 function mouseClicked() {
-	menu.mousePressed();
+	mainMenu.mousePressed();
 }
 
 function keyPressed() {
-	menu.keyPressed(keyCode);
+	mainMenu.keyPressed(keyCode);
 }
 
 //when the window has been resized. Resize canvas to fit 
