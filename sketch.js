@@ -44,8 +44,11 @@ function keyPressed() {
 //when the window has been resized. Resize canvas to fit 
 //if the visualisation needs to be resized call its onResize method
 function windowResized() {
+    var oldWidth = width;
+    var oldHeight = height;
 	resizeCanvas(windowWidth, windowHeight);
 	if (vis.selectedVisual.hasOwnProperty('onResize')) {
 		vis.selectedVisual.onResize();
 	}
+    mainMenu.onResize(oldWidth, oldHeight);
 }
