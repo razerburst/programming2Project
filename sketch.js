@@ -6,24 +6,31 @@ var vis;
 var sound;
 //variable for p5 fast fourier transform
 var fourier;
+var origWidth;
+var origHeight;
+var font;
 
 function preload() {
 	sound = loadSound('assets/stomper_reggae_bit.mp3');
+    font = loadFont('assets/Helvetica.ttf');
 }
 
 function setup() {
-	 createCanvas(windowWidth, windowHeight);
-	 background(0);
-	 mainMenu = new Menu();
+    createCanvas(windowWidth, windowHeight);
+    origWidth = windowWidth;
+    origHeight = windowHeight;
+    background(0);
+    mainMenu = new Menu();
 
-	 //instantiate the fft object
-	 fourier = new p5.FFT();
+    //instantiate the fft object
+    fourier = new p5.FFT();
 
-	 //create a new visualisation container and add visualisations
-	 vis = new Visualisations();
-	 vis.add(new Spectrum());
-	 vis.add(new WavePattern());
-	 vis.add(new Needles());
+    //create a new visualisation container and add visualisations
+    vis = new Visualisations();
+    vis.add(new Spectrum());
+    vis.add(new WavePattern());
+    vis.add(new Needles());
+    textFont(font);
 }
 
 function draw() {
@@ -34,7 +41,15 @@ function draw() {
 }
 
 function mouseClicked() {
-	mainMenu.mousePressed();
+    for (i=0; i<mainMenu.buttons.length; i++) {
+        mainMenu.buttons[i].mousePressed(mainMenu.menuDisplayed);
+    }
+}
+
+function mouseDragged() {
+    mainMenu.volumeSlider.onPull();
+    mainMenu.opacitySlider.onPull();
+    return false;
 }
 
 function keyPressed() {
