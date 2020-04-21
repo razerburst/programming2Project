@@ -42,14 +42,24 @@ function draw() {
 
 function mouseClicked() {
     for (i=0; i<mainMenu.buttons.length; i++) {
-        mainMenu.buttons[i].mousePressed(mainMenu.menuDisplayed);
+        var button = mainMenu.buttons[i];
+        if (button.mousePressed(mainMenu.menuDisplayed) == true) {
+            if (button.text == "Play/Pause") {
+                sound.loop();
+            }
+        }
     }
+    return false;
 }
 
 function mouseDragged() {
-    mainMenu.volumeSlider.onPull();
-    mainMenu.opacitySlider.onPull();
-    return false;
+    mainMenu.volumeSlider.pulled(mainMenu.menuDisplayed);
+    mainMenu.opacitySlider.pulled(mainMenu.menuDisplayed);
+}
+
+function mouseReleased() {
+    mainMenu.volumeSlider.isPulled = false;
+    mainMenu.opacitySlider.isPulled = false;
 }
 
 function keyPressed() {

@@ -115,9 +115,10 @@ function MenuButton(x_, y_, w_, h_, _text) {
                 mouseX <= this.x+(this.w/2) &&
                 mouseY >= this.y-(this.h/2) && 
                 mouseY <= this.y+(this.h/2)) {
-                    console.log("meow");
-                }
+                return true;
+            }
         }
+        return false;
     }
 }
 
@@ -134,6 +135,9 @@ function MenuSlider(x_, y_, w_, h_, _text, textAlignY) {
     }
     this.pullerX = x_;
     this.pullerY = y_;
+    this.pullerW = this.w*(14/352);
+    this.pullerH = this.h*(28/64);
+    this.isPulled = false;
     
     this.draw = function() {
         push();
@@ -145,6 +149,9 @@ function MenuSlider(x_, y_, w_, h_, _text, textAlignY) {
         fill(106, 10, 255);
         rect(this.x, this.y, this.w*(318/352), this.h*(28/64))
         fill(255, 255, 255);
+        if (mouseIsPressed && this.isPulled == true) {
+            this.pullerX = mouseX;
+        }
         rect(this.pullerX, this.pullerY, this.w*(14/352), this.h*(28/64))
         pop();
         textAlign(CENTER, textAlignY);
@@ -153,14 +160,14 @@ function MenuSlider(x_, y_, w_, h_, _text, textAlignY) {
         pop();
     }
     
-    this.onPull = function() {
+    this.pulled = function(show) {
         if (show == true){
-            if (mouseX >= this.x-(this.w/2) &&
-                mouseX <= this.x+(this.w/2) &&
-                mouseY >= this.y-(this.h/2) && 
-                mouseY <= this.y+(this.h/2)) {
-                    console.log("meow");
-                }
+            if (mouseX >= this.pullerX-(this.pullerW/2) &&
+                mouseX <= this.pullerX+(this.pullerW/2) &&
+                mouseY >= this.pullerY-(this.pullerH/2) && 
+                mouseY <= this.pullerY+(this.pullerH/2)) {
+                this.isPulled = true;
+            }
         }
     }
 }
