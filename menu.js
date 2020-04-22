@@ -135,8 +135,9 @@ function MenuSlider(x_, y_, w_, h_, _text, textAlignY) {
     }
     this.pullerX = x_;
     this.pullerY = y_;
-    this.pullerW = this.w*(14/352);
+    this.pullerW = this.w*(318/352);
     this.pullerH = this.h*(28/64);
+    this.boxW = this.w*(14/352);
     this.isPulled = false;
     
     this.draw = function() {
@@ -147,12 +148,9 @@ function MenuSlider(x_, y_, w_, h_, _text, textAlignY) {
         rectMode(CENTER);
         rect(this.x, this.y, this.w, this.h);
         fill(106, 10, 255);
-        rect(this.x, this.y, this.w*(318/352), this.h*(28/64))
+        rect(this.x, this.y, this.w*(318/352), this.h*(28/64));
         fill(255, 255, 255);
-        if (mouseIsPressed && this.isPulled == true) {
-            this.pullerX = mouseX;
-        }
-        rect(this.pullerX, this.pullerY, this.w*(14/352), this.h*(28/64))
+        rect(this.pullerX, this.pullerY, this.boxW, this.h*(28/64))
         pop();
         textAlign(CENTER, textAlignY);
         fill(0, 0, 0);
@@ -160,13 +158,26 @@ function MenuSlider(x_, y_, w_, h_, _text, textAlignY) {
         pop();
     }
     
-    this.pulled = function(show) {
+    this.mouseCollide = function(show) {
         if (show == true){
-            if (mouseX >= this.pullerX-(this.pullerW/2) &&
-                mouseX <= this.pullerX+(this.pullerW/2) &&
-                mouseY >= this.pullerY-(this.pullerH/2) && 
-                mouseY <= this.pullerY+(this.pullerH/2)) {
-                this.isPulled = true;
+            if (mouseX >= this.x-(this.pullerW/2) &&
+                mouseX <= this.x+(this.pullerW/2) &&
+                mouseY >= this.y-(this.pullerH/2) && 
+                mouseY <= this.y+(this.pullerH/2)) {
+                return true;
+            }
+        }
+    }
+    
+    this.onPull = function(show) {
+        if (show == true) {
+            if (this.isPulled == true) {
+                this.pullerX = mouseX;
+                if (this.pullerX+(this.boxW/2) >= this.x+(this.pullerW/2)) {
+                    this.pullerX = this.x+(this.pullerW/2)-(this.boxW/2);
+                } else if (this.pullerX-(this.boxW/2) <= this.x-(this.pullerW/2)) {
+                    this.pullerX = this.x-(this.pullerW/2)+(this.boxW/2);
+                }
             }
         }
     }

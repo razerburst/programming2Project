@@ -45,16 +45,29 @@ function mouseClicked() {
         var button = mainMenu.buttons[i];
         if (button.mousePressed(mainMenu.menuDisplayed) == true) {
             if (button.text == "Play/Pause") {
-                sound.loop();
+                if (sound.isLooping() != true) {
+                    sound.loop();
+                } else {
+                    sound.pause();
+                }
             }
         }
     }
     return false;
 }
 
+function mousePressed() {
+    if (mainMenu.volumeSlider.mouseCollide(mainMenu.menuDisplayed) == true) {
+        mainMenu.volumeSlider.isPulled = true;
+    }
+    if (mainMenu.opacitySlider.mouseCollide(mainMenu.menuDisplayed) == true) {
+        mainMenu.opacitySlider.isPulled = true;
+    }
+}
+
 function mouseDragged() {
-    mainMenu.volumeSlider.pulled(mainMenu.menuDisplayed);
-    mainMenu.opacitySlider.pulled(mainMenu.menuDisplayed);
+    mainMenu.volumeSlider.onPull(mainMenu.menuDisplayed);
+    mainMenu.opacitySlider.onPull(mainMenu.menuDisplayed);
 }
 
 function mouseReleased() {
