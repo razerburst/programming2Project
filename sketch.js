@@ -1,5 +1,6 @@
-//global for the controls and input 
+//global for the controls and input
 var mainMenu;
+var visMenu;
 //store visualisations in a container
 var vis;
 //variable for the p5 sound object
@@ -21,6 +22,7 @@ function setup() {
     origHeight = windowHeight;
     background(0);
     mainMenu = new Menu();
+    visMenu = new Menu();
 
     //instantiate the fft object
     fourier = new p5.FFT();
@@ -58,25 +60,28 @@ function mouseClicked() {
 
 function mousePressed() {
     if (mainMenu.volumeSlider.mouseCollide(mainMenu.menuDisplayed) == true) {
-        mainMenu.volumeSlider.isPulled = true;
+        mainMenu.volumeSlider.isBeingPulled = true;
     }
     if (mainMenu.opacitySlider.mouseCollide(mainMenu.menuDisplayed) == true) {
-        mainMenu.opacitySlider.isPulled = true;
+        mainMenu.opacitySlider.isBeingPulled = true;
     }
 }
 
 function mouseDragged() {
     mainMenu.volumeSlider.onPull(mainMenu.menuDisplayed);
+    if (mainMenu.volumeSlider.isBeingPulled == true) {
+        mainMenu.volumeSlider.changeVolume();
+    }
     mainMenu.opacitySlider.onPull(mainMenu.menuDisplayed);
 }
 
 function mouseReleased() {
-    mainMenu.volumeSlider.isPulled = false;
-    mainMenu.opacitySlider.isPulled = false;
+    mainMenu.volumeSlider.isBeingPulled = false;
+    mainMenu.opacitySlider.isBeingPulled = false;
 }
 
 function keyPressed() {
-	mainMenu.keyPressed(keyCode);
+	mainMenu.keyPressed(keyCode, 77);
 }
 
 //when the window has been resized. Resize canvas to fit 
