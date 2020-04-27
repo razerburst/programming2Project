@@ -45,7 +45,7 @@ function draw() {
 function mouseClicked() {
     for (i=0; i<mainMenu.buttons.length; i++) {
         var button = mainMenu.buttons[i];
-        if (button.mousePressed(mainMenu.menuDisplayed) == true) {
+        if (button.mousePressed() == true && mainMenu.menuDisplayed == true) {
             if (button.text == "Play/Pause") {
                 if (sound.isLooping() != true) {
                     sound.loop();
@@ -55,33 +55,54 @@ function mouseClicked() {
             }
         }
     }
-    return false;
+    return false; //"Browsers may have different default behaviors attached to various mouse events.
+                  //To prevent any default behavior for this event, add "return false" to the end of the method."
+                  //from https://p5js.org/reference/#/p5/mousePressed
 }
 
 function mousePressed() {
-    if (mainMenu.volumeSlider.mouseCollide(mainMenu.menuDisplayed) == true) {
-        mainMenu.volumeSlider.isBeingPulled = true;
+    if (mainMenu.menuDisplayed == true) {
+        if (mainMenu.volumeSlider.mouseCollide() == true) {
+            mainMenu.volumeSlider.isBeingPulled = true;
+        }
+        if (mainMenu.opacitySlider.mouseCollide() == true) {
+            mainMenu.opacitySlider.isBeingPulled = true;
+        }
+        if (mainMenu.buttons[2].mousePressed() == true) {
+            var ful = fullscreen();
+            console.log(ful);
+            if (fullscreen() == false) {
+                fullscreen(0);
+            } else {
+                fullscreen(1);
+            }
+        }
     }
-    if (mainMenu.opacitySlider.mouseCollide(mainMenu.menuDisplayed) == true) {
-        mainMenu.opacitySlider.isBeingPulled = true;
-    }
+    return false;
 }
 
 function mouseDragged() {
-    mainMenu.volumeSlider.onPull(mainMenu.menuDisplayed);
+    mainMenu.volumeSlider.onPull();
     if (mainMenu.volumeSlider.isBeingPulled == true) {
         mainMenu.volumeSlider.changeVolume();
     }
-    mainMenu.opacitySlider.onPull(mainMenu.menuDisplayed);
+    mainMenu.opacitySlider.onPull();
+    return false;
 }
 
 function mouseReleased() {
     mainMenu.volumeSlider.isBeingPulled = false;
     mainMenu.opacitySlider.isBeingPulled = false;
+    return false;
 }
 
 function keyPressed() {
-	mainMenu.keyPressed(keyCode, 77);
+	mainMenu.keyPressed(keyCode, 77); //pass which key is being pressed and the code of the key required to perform the action
+    if (keyCode >=49 && keyCode <= 53) {
+        var visNumber = keyCode - 49;
+        vis.selectVisual(vis.visuals[visNumber].name); //49 to 53 are 0 to 4 respectively
+    }
+    return false;
 }
 
 //when the window has been resized. Resize canvas to fit 

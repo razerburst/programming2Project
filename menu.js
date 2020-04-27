@@ -35,11 +35,7 @@ function Menu() {
 	this.keyPressed = function(keycode, key) {
 		if (keycode == key) {
 			this.menuDisplayed = !this.menuDisplayed;
-		}
-		if (keycode > 47 && keycode < 53) { //48 to 52 are 0 to 4 respectively
-			var visNumber = keycode - 48;
-			vis.selectVisual(vis.visuals[visNumber].name);
-		}
+        }
 	}
 
 	this.draw = function() { //render the menu GUI and the buttons
@@ -115,16 +111,13 @@ function MenuButton(x_, y_, w_, h_, _text) {
         pop();
     }
     
-    this.mousePressed = function(show) {
-        if (show == true){
-            if (mouseX >= this.x-(this.w/2) &&
-                mouseX <= this.x+(this.w/2) &&
-                mouseY >= this.y-(this.h/2) && 
-                mouseY <= this.y+(this.h/2)) {
-                return true;
-            }
+    this.mousePressed = function() {
+        if (mouseX >= this.x-(this.w/2) &&
+            mouseX <= this.x+(this.w/2) &&
+            mouseY >= this.y-(this.h/2) && 
+            mouseY <= this.y+(this.h/2)) {
+            return true;
         }
-        return false;
     }
 }
 
@@ -155,7 +148,6 @@ function MenuSlider(x_, y_, w_, h_, _text, textAlignY) { //textAlignY necessary 
     
     this.init = function(x_, y_, w_, h_) {
         this.x = x_;
-        console.log(this.x);
         this.y = y_;
         this.w = w_;
         this.h = h_;
@@ -197,26 +189,22 @@ function MenuSlider(x_, y_, w_, h_, _text, textAlignY) { //textAlignY necessary 
         pop();
     }
     
-    this.mouseCollide = function(show) {
-        if (show == true){
-            if (mouseX >= this.x-(this.sliderW/2) &&
-                mouseX <= this.x+(this.sliderW/2) &&
-                mouseY >= this.y-(this.sliderH/2) && 
-                mouseY <= this.y+(this.sliderH/2)) {
-                return true;
-            }
+    this.mouseCollide = function() {
+        if (mouseX >= this.x-(this.sliderW/2) &&
+            mouseX <= this.x+(this.sliderW/2) &&
+            mouseY >= this.y-(this.sliderH/2) && 
+            mouseY <= this.y+(this.sliderH/2)) {
+            return true;
         }
     }
     
-    this.onPull = function(show) {
-        if (show == true) {
-            if (this.isBeingPulled == true) {
-                this.pullerX = mouseX;
-                if (this.pullerX+(this.pullerW/2) >= this.x+(this.sliderW/2)) {
-                    this.pullerX = this.sliderEnd;
-                } else if (this.pullerX-(this.pullerW/2) <= this.x-(this.sliderW/2)) {
-                    this.pullerX = this.sliderStart;
-                }
+    this.onPull = function() {
+        if (this.isBeingPulled == true) {
+            this.pullerX = mouseX;
+            if (this.pullerX+(this.pullerW/2) >= this.x+(this.sliderW/2)) {
+                this.pullerX = this.sliderEnd;
+            } else if (this.pullerX-(this.pullerW/2) <= this.x-(this.sliderW/2)) {
+                this.pullerX = this.sliderStart;
             }
         }
         this.value = map(this.pullerX, this.sliderStart, this.sliderEnd, 0, 1);
