@@ -22,8 +22,8 @@ function setup() {
     origWidth = windowWidth;
     origHeight = windowHeight;
     background(0);
-    mainMenu = new Menu();
-    visMenu = new Menu();
+    mainMenu = new MainMenu();
+    visMenu = new MainMenu();
 
     //instantiate the fft object
     fourier = new p5.FFT();
