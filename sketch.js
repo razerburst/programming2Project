@@ -53,18 +53,14 @@ function mouseClicked() {
                 } else {
                     sound.loop();
                 }
-                console.log(sound.isLooping())
-                console.log(sound.isPaused());
             }
             if (button.text == "Restart") {
                 if (sound.isLooping() == true) {
+                    sound.pause(0);
                     sound.stop();
-                    sound.loop(0);
                 } else {
                     sound.stop();
                 }
-                console.log(sound.isLooping())
-                console.log(sound.isPaused());
             }
             if (button.text == "Fullscreen") {
                 var ful = fullscreen();
