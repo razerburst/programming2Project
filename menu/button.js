@@ -1,9 +1,10 @@
-function MenuButton(x_, y_, w_, h_, _text) {
+function MenuButton(x_, y_, w_, h_, _text, _colour) {
     this.x = x_;
     this.y = y_;
     this.w = w_;
     this.h = h_;
     this.text = _text;
+    this.colour = _colour;
     if (width/displayWidth <= height/displayHeight) { //if width of window too small for text then make the initial text size based on width, else the height
         this.textSize = 46*(width/displayWidth);      //so that text can always be read, even if height is adjusted and width is not and vice versa
     } else {

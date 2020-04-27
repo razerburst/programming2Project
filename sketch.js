@@ -23,7 +23,7 @@ function setup() {
     origHeight = windowHeight;
     background(0);
     mainMenu = new MainMenu();
-    visMenu = new MainMenu();
+    visMenu = new VisMenu();
 
     //instantiate the fft object
     fourier = new p5.FFT();
@@ -106,6 +106,7 @@ function mouseReleased() {
 
 function keyPressed() {
 	mainMenu.keyPressed(keyCode, 77); //pass which key is being pressed and the code of the key required to perform the action
+    visMenu.keyPressed(keyCode, 86);
     if (keyCode >=49 && keyCode <= 53) {
         var visNumber = keyCode - 49;
         vis.selectVisual(vis.visuals[visNumber].name); //49 to 53 are 0 to 4 respectively
