@@ -13,6 +13,7 @@ var font;
 
 function preload() {
 	sound = loadSound('assets/stomper_reggae_bit.mp3');
+    sound.playMode('restart');
     font = loadFont('assets/Helvetica.ttf');
 }
 
@@ -47,10 +48,30 @@ function mouseClicked() {
         var button = mainMenu.buttons[i];
         if (button.mousePressed() == true && mainMenu.menuDisplayed == true) {
             if (button.text == "Play/Pause") {
-                if (sound.isLooping() != true) {
-                    sound.loop();
-                } else {
+                if (sound.isLooping() == true) {
                     sound.pause();
+                } else {
+                    sound.loop();
+                }
+                console.log(sound.isLooping())
+                console.log(sound.isPaused());
+            }
+            if (button.text == "Restart") {
+                if (sound.isLooping() == true) {
+                    sound.stop();
+                    sound.loop(0);
+                } else {
+                    sound.stop();
+                }
+                console.log(sound.isLooping())
+                console.log(sound.isPaused());
+            }
+            if (button.text == "Fullscreen") {
+                var ful = fullscreen();
+                if (fullscreen() == false) {
+                    fullscreen(0);
+                } else {
+                    fullscreen(1);
                 }
             }
         }
@@ -67,15 +88,6 @@ function mousePressed() {
         }
         if (mainMenu.opacitySlider.mouseCollide() == true) {
             mainMenu.opacitySlider.isBeingPulled = true;
-        }
-        if (mainMenu.buttons[2].mousePressed() == true) {
-            var ful = fullscreen();
-            console.log(ful);
-            if (fullscreen() == false) {
-                fullscreen(0);
-            } else {
-                fullscreen(1);
-            }
         }
     }
     return false;
