@@ -23,12 +23,11 @@ function MenuSlider(x_, y_, w_, h_, _text, textAlignY) { //textAlignY necessary 
     this.isBeingPulled = false;
     this.value = 1; //start with slider at max
     
-    this.init = function(x_, y_, w_, h_) {
+    this.init = function(x_, y_, w_, h_) { //method to reinitialise size and position of object (for resizing)
         this.x = x_;
         this.y = y_;
         this.w = w_;
         this.h = h_;
-        this.text = _text;
         if (width/displayWidth <= height/displayHeight) {
             this.textSize = 46*(width/displayWidth);
         } else {

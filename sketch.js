@@ -33,6 +33,7 @@ function setup() {
     vis.add(new Spectrum());
     vis.add(new WavePattern());
     vis.add(new Needles());
+    vis.add(new RidgePlots());
     textFont(font);
 }
 
@@ -41,6 +42,7 @@ function draw() {
 	//draw the selected visualisation
 	vis.selectedVisual.draw();
 	mainMenu.draw();
+    visMenu.draw();
 }
 
 function mouseClicked() {
@@ -124,4 +126,5 @@ function windowResized() {
 		vis.selectedVisual.onResize();
 	}
     mainMenu.onResize(oldWidth, oldHeight);
+    visMenu.onResize(oldWidth, oldHeight);
 }

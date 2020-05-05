@@ -10,17 +10,27 @@ function VisMenu() {
                                      this.y+(this.h*(39/546))+(this.h*(64/546))/2, //y pos of menu + height from top of menu to top of button
                                      this.w*(352/426),                             //+ half the height of button itself to centre it
                                      this.h*(64/546), 
-                                     "Play/Pause"));
+                                     "Extension"));
     this.buttons.push(new MenuButton(this.x+(this.w/2),
-                                     this.y+(this.h*(138/546))+(this.h*(64/546))/2,
+                                     this.y+(this.h*(141/546))+(this.h*(64/546))/2,
                                      this.w*(352/426),
                                      this.h*(64/546), 
-                                     "Restart"));
+                                     "Flowers"));
+    this.buttons.push(new MenuButton(this.x+(this.w/2),
+                                     this.y+(this.h*(244/546))+(this.h*(64/546))/2,
+                                     this.w*(352/426),
+                                     this.h*(64/546), 
+                                     "Vis 3"));
+    this.buttons.push(new MenuButton(this.x+(this.w/2),
+                                     this.y+(this.h*(347/546))+(this.h*(64/546))/2,
+                                     this.w*(352/426),
+                                     this.h*(64/546), 
+                                     "Vis 4"));
     this.buttons.push(new MenuButton(this.x+(this.w/2),
                                      this.y+(this.h*(450/546))+(this.h*(64/546))/2,
                                      this.w*(352/426),
                                      this.h*(64/546), 
-                                     "Fullscreen"));
+                                     "Vis 5"));
 
 	this.keyPressed = function(keycode, key) {
 		if (keycode == key) {
@@ -54,8 +64,10 @@ function VisMenu() {
             this.y = height*(111/768);
             this.h = height*(546/768);
             this.buttons[0].y = this.y+(this.h*(39/546))+(this.h*(64/546))/2;
-            this.buttons[1].y = this.y+(this.h*(138/546))+(this.h*(64/546))/2;
-            this.buttons[2].y = this.y+(this.h*(450/546))+(this.h*(64/546))/2;
+            this.buttons[1].y = this.y+(this.h*(141/546))+(this.h*(64/546))/2;
+            this.buttons[2].y = this.y+(this.h*(244/546))+(this.h*(64/546))/2;
+            this.buttons[3].y = this.y+(this.h*(347/546))+(this.h*(64/546))/2;
+            this.buttons[4].y = this.y+(this.h*(450/546))+(this.h*(64/546))/2;
             for (i=0; i<this.buttons.length; i++){
                 var button = this.buttons[i];
                 button.h = this.h*(64/546);

@@ -1,90 +1,60 @@
-//declare globals
-var music;
-var lines;
-var startX;
-var startY;
-var endY;
-var plotWidth;
-var plotHeight;
-var numFrames;
-var speed = 0.7
-var fourier;
-var play = true;
-
-function preload(){
-    music = loadSound('assets/stomper_reggae_bit.mp3');
-}
-
-function setup() //initialises global variables
-{
-	createCanvas(800, 600);
-    lines = []; //array to hold line arrays
-    numFrames = 10; //draw lines to plot every x frames
+function RidgePlots() {
+    this.lines = [] //array to hold line arrays
     //below are variables to do with the position and size of the plot
-    startX = width/5;
-    endY = height/5;
-    startY = height-endY;
-    plotWidth = (width/5)*3;
-    plotHeight = (height/5)*3;
-    fourier = new p5.FFT();
-}
+    this.startX = width/5
+    this.endY = height/5;
+    this.startY = height-this.endY;
+    this.plotWidth = (width/5)*3;
+    this.plotHeight = (height/5)*3;
+    this.numFrames = 6; //draw lines to plot every x frames
+    this.speed = 2;
+    this.play = true;
+    this.a = 0;
+    this.hue = 0;
 
-
-function draw()
-{
-    //"clear" the screen once every draw() call by essentially filling the screen with the background colour
-    background(0);
-    //used to see what the plot would look like
-//    fill(255);
-//    rect(startX, endY, plotWidth, plotHeight);
-    fill(0);
-    stroke(255);
-    strokeWeight(2);
-    if (frameCount%numFrames == 0){ //every 10 frames add a line to the array
-        addWave();
-    }
-    
-    for (var i=0; i<lines.length; i++){ //first loop iterates through the array of line arrays
-        var l = lines[i];
-        beginShape();
-        for(var j=0; j<l.length; j++){ //second loop iterates through each line array and decreases their y properties by some amount
-            l[j].y-=speed;
-            curveVertex(l[j].x, l[j].y)
+    this.draw = function () {
+        background(0);
+        fill(0);
+        strokeWeight(4);
+        this.a += PI/180;
+        var hue = map(sin(this.a), -1, 1, 0, 180);
+        console.log(hue);
+        
+        if (frameCount%this.numFrames == 0) { //every 10 frames add a line to the array
+            this.addWave();
         }
-        endShape();
-        if (l[0].y < endY){ //if the line goes past the top of the plot, remove it from the list
-            lines.splice(i, 1);
-        }
-    }
-}
-
-function mousePressed(){
-    if (play){
-        music.loop();
-    } else{
-        music.stop();
-    }
-    play = !play;
-}
-
-function addWave(){ //factory method that generates line arrays and pushes them to the output "lines" array
-//    lines.push([{x: startX, y: startY}, {x: startX+plotWidth, y: startY}]);
-    var wave = fourier.waveform();
-    var outputWave = [];
-    
-    for (var i=0; i<wave.length; i++){
-        if (i%40 == 0){ //
-            var x = map(i, 0, 1024, startX, startX+plotWidth);
-            if (i < 1024*0.5){ //if left half of waveform, increase scale
-                var gradInc = (i/40)*(40/12.8); //gradually increase the scale up to 40
-                var y = map(wave[i], -1, 1, -gradInc, gradInc);
-                outputWave.push({x: x, y: startY + y*2});
-            } else{ //otherwise decrease scale
-                var gradDec = ((512/40)-((i-512)/40))*(40/12.8); //gradually decrease the scale down to 0
-                var y = map(wave[i], -1, 1, -gradDec, gradDec);
-                outputWave.push({x: x, y: startY + y*2});
+        for (var i=0; i<this.lines.length; i++) { //first loop iterates through the array of line arrays
+            console.log(hue+i);
+            var l = this.lines[i];
+            push();
+            colorMode(HSB, max=180);
+            stroke(hue+i-(this.lines.length/2), 100, 100);
+            noFill();
+            beginShape();
+            for(var j=0; j<l.length; j++) { //second loop iterates through each line array and decreases their y properties by speed
+                l[j].y-=this.speed;
+                curveVertex(l[j].x, l[j].y)
+            }
+            endShape();
+            pop();
+            if (l[0].y < this.endY) { //if the line goes past the top of the plot, remove it from the list
+                this.lines.splice(i, 1);
             }
         }
     }
-    lines.push(outputWave);
+    
+    this.addWave = function() { //method that generates line arrays and pushes them to the output "lines" array
+        var wave = fourier.waveform();
+        var outputWave = [];
+
+        for (var i=0; i<wave.length; i++) {
+            var angle = map(i, 0, wave.length, 0, PI);
+            if (i%50 == 0) { //every 40 bins so that the wave isn't jagged
+                var x = map(i, 0, wave.length, this.startX, this.startX+this.plotWidth);
+                var y = map(wave[i], -1, 1, -3*sin(angle), 3*sin(angle));
+                outputWave.push({x: x, y: this.startY + y*50});
+            }
+        }
+        this.lines.push(outputWave);
+    }
 }
