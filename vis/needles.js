@@ -4,8 +4,8 @@ function Needles() {
 	this.name = "needles";
 
 	//how large is the arc of the needle plot.
-	var minAngle = PI + PI / 10;
-	var maxAngle = TWO_PI - PI / 10;
+	var minAngle = 180 + 180 / 10;
+	var maxAngle = 360 - 180 / 10;
 
 	this.plotsAcross = 2;
 	this.plotsDown = 2;
@@ -93,7 +93,7 @@ function Needles() {
 		fill('#333333');
 		translate(centreX, bottomY);
 		//draw the semi circle for the botttom of the needle
-		arc(0, 0, 20, 20, PI, 2 * PI);
+		arc(0, 0, 20, 20, 180, 2 * 180);
 		textAlign(CENTER);
 		textSize(12);
 		text(freqLabel, 0, -(this.plotHeight / 2));
@@ -108,7 +108,7 @@ function Needles() {
 			var y1 = (this.dialRadius - 5) * sin(nextTickAngle);
 
 			line(x, y, x1, y1);
-			nextTickAngle += PI / 10;
+			nextTickAngle += 180 / 10;
 		}
 		pop();
 	};

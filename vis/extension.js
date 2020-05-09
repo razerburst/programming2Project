@@ -14,6 +14,10 @@ function RidgePlots() {
 
     this.draw = function () {
         this.a += PI/180;
+        background(0);
+        fill(0);
+        strokeWeight(4);
+        this.a += 180/180;
         var hue = map(sin(this.a), -1, 1, 0, 180);
         if (frameCount%this.numFrames == 0) { //every 10 frames add a line to the array
             this.addWave();
@@ -43,7 +47,7 @@ function RidgePlots() {
         var outputWave = [];
 
         for (var i=0; i<wave.length; i++) {
-            var angle = map(i, 0, wave.length, 0, PI);
+            var angle = map(i, 0, wave.length, 0, 180);
             if (i%50 == 0) { //every 40 bins so that the wave isn't jagged
                 var x = map(i, 0, wave.length, this.startX, this.startX+this.plotWidth);
                 var y = map(wave[i], -1, 1, -3*sin(angle), 3*sin(angle));

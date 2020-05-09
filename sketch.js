@@ -19,6 +19,7 @@ function preload() {
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    angleMode(DEGREES);
     origWidth = windowWidth;
     origHeight = windowHeight;
     background(0);
@@ -35,6 +36,7 @@ function setup() {
     vis.add(new Needles());
     vis.add(new RidgePlots());
     vis.add(new Flowers());
+    vis.add(new Circle());
     textFont(font);
 }
 
@@ -112,7 +114,7 @@ function keyPressed() {
     visMenu.keyPressed(keyCode, 86);
     if (keyCode >=49 && keyCode <= 53) {
         var visNumber = keyCode - 49;
-        vis.selectVisual(vis.visuals[visNumber].name); //49 to 53 are 0 to 4 respectively
+        vis.selectVisual(vis.visuals[visNumber].name); //49 to 53 are 1 to 5 respectively
     }
     return false;
 }
