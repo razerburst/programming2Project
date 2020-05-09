@@ -13,21 +13,16 @@ function RidgePlots() {
     this.hue = 0;
 
     this.draw = function () {
-        background(0);
-        fill(0);
-        strokeWeight(4);
         this.a += PI/180;
         var hue = map(sin(this.a), -1, 1, 0, 180);
-        console.log(hue);
-        
         if (frameCount%this.numFrames == 0) { //every 10 frames add a line to the array
             this.addWave();
         }
         for (var i=0; i<this.lines.length; i++) { //first loop iterates through the array of line arrays
-            console.log(hue+i);
             var l = this.lines[i];
             push();
             colorMode(HSB, max=180);
+            strokeWeight(4);
             stroke(hue+i-(this.lines.length/2), 100, 100);
             noFill();
             beginShape();

@@ -34,6 +34,7 @@ function setup() {
     vis.add(new WavePattern());
     vis.add(new Needles());
     vis.add(new RidgePlots());
+    vis.add(new Flowers());
     textFont(font);
 }
 
