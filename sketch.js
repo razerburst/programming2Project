@@ -77,6 +77,12 @@ function mouseClicked() {
             }
         }
     }
+    for (i=0; i<visMenu.buttons.length; i++) {
+        var button = visMenu.buttons[i];
+        if (button.mousePressed() == true && visMenu.menuDisplayed == true) {
+            vis.selectVisual(button.text);
+        }
+    }
     return false; //"Browsers may have different default behaviors attached to various mouse events.
                   //To prevent any default behavior for this event, add "return false" to the end of the method."
                   //from https://p5js.org/reference/#/p5/mousePressed
@@ -95,11 +101,14 @@ function mousePressed() {
 }
 
 function mouseDragged() {
-    mainMenu.volumeSlider.onPull();
+    mainMenu.volumeSlider.onPull(); //check if slider is being pulled, and if it is, change the value to the slider's current position
     if (mainMenu.volumeSlider.isBeingPulled == true) {
         mainMenu.volumeSlider.changeVolume();
     }
     mainMenu.opacitySlider.onPull();
+    if (mainMenu.opacitySlider.isBeingPulled == true) {
+        mainMenu.opacitySlider.changeOpacity();
+    }
     return false;
 }
 
@@ -112,9 +121,9 @@ function mouseReleased() {
 function keyPressed() {
 	mainMenu.keyPressed(keyCode, 77); //pass which key is being pressed and the code of the key required to perform the action
     visMenu.keyPressed(keyCode, 86);
-    if (keyCode >=49 && keyCode <= 53) {
+    if (keyCode >=49 && keyCode <= 54) {
         var visNumber = keyCode - 49;
-        vis.selectVisual(vis.visuals[visNumber].name); //49 to 53 are 1 to 5 respectively
+        vis.selectVisual(vis.visuals[visNumber].name); //49 to 54 are 1 to 6 respectively
     }
     return false;
 }

@@ -1,7 +1,8 @@
 function RidgePlots() {
+    this.name = "ridgeplots";
     this.lines = [] //array to hold line arrays
     //below are variables to do with the position and size of the plot
-    this.startX = width/5
+    this.startX = width/5;
     this.endY = height/5;
     this.startY = height-this.endY;
     this.plotWidth = (width/5)*3;
@@ -14,9 +15,6 @@ function RidgePlots() {
 
     this.draw = function () {
         this.a += PI/180;
-        background(0);
-        fill(0);
-        strokeWeight(4);
         this.a += 180/180;
         var hue = map(sin(this.a), -1, 1, 0, 180);
         if (frameCount%this.numFrames == 0) { //every 10 frames add a line to the array
@@ -55,5 +53,13 @@ function RidgePlots() {
             }
         }
         this.lines.push(outputWave);
+    }
+    
+    this.onResize = function() {
+        this.startX = width/5;
+        this.endY = height/5;
+        this.startY = height-this.endY;
+        this.plotWidth = (width/5)*3;
+        this.plotHeight = (height/5)*3;
     }
 }

@@ -3,6 +3,7 @@ function MenuSlider(x_, y_, w_, h_, _text, textAlignY) { //textAlignY necessary 
     this.y = y_;
     this.w = w_;
     this.h = h_;
+    this.a = 255;
     this.text = _text;
     if (width/displayWidth <= height/displayHeight) {
         this.textSize = 46*(width/displayWidth);
@@ -50,17 +51,17 @@ function MenuSlider(x_, y_, w_, h_, _text, textAlignY) { //textAlignY necessary 
     this.draw = function() {
         push();
         textSize(this.textSize);
-        fill(220, 0, 244);
+        fill(220, 0, 244, this.a);
         push();
         rectMode(CENTER);
         rect(this.x, this.y, this.w, this.h); //outer box (same size and colour as menu buttons)
-        fill(106, 10, 255); 
+        fill(106, 10, 255, this.a); 
         rect(this.x, this.y, this.w*(318/352), this.h*(28/64)); //inner box (the blue part where the puller moves)
-        fill(255, 255, 255); //puller is white
+        fill(255, 255, 255, this.a); //puller is white
         rect(this.pullerX, this.pullerY, this.pullerW, this.pullerH); //puller 
         pop();
         textAlign(CENTER, textAlignY);
-        fill(0, 0, 0);
+        fill(0, 0, 0, this.a);
         text(this.text, this.x, this.y-(this.h/2));
         pop();
     }
@@ -91,6 +92,8 @@ function MenuSlider(x_, y_, w_, h_, _text, textAlignY) { //textAlignY necessary 
     }
     
     this.changeOpacity = function() {
-        //change opacity of menus, visualisations, etc
+        var alpha = map(this.value, 0, 1, 30, 255);
+        mainMenu.a = alpha;
+        visMenu.a = alpha;
     }
 }

@@ -28,25 +28,29 @@ Who is responsible?
     3. We should both add improvements individually.
 
 Can it be done in the available time?
-
+Considering the setbacks encountered as a result of personal circumstances, we will need to compromise on either the complexity or the number of extensions
+so that it can be completed in the available time.
 
 When must it be completed?
-
-
+18/05/20
+But realistically it should be completed at least a day or two before then so that we can fix any problems that may arise before the deadline.
 
 Features implemented (so far):
--Waves are scaled up greater towards their centres. Instead of there being a sharp increase in scale (from smallScale, 3, to bigScale, 40), it is now more gradual.
--Music can be turned on/off, simple but convenient feature for testing.
+-For the ridgeplots, the waves are scaled up greater towards their centres. Instead of there being a sharp increase in scale (from smallScale, 3, to bigScale, 40), it is now more gradual.
+-Hue added for the ridgeplots
+-Circle visualiser created
+-Created two resizable menus with slider and button classes
+-
 
 Plans for final project:
 -The parameters for each wave are randomised, dynamically changing graphics
 -Wave less jagged, more sine-wave like
 -Add colour gradient to make it look better
-
--Randomly generated flowers on the screen with colour depending on amplitude and how spread depending on pitch
+-Randomly generated flowers on the screen with colour depending on amplitude and how spread depending on pitch, periodically change position
+-
 
 Contingency plan:
-
+Compromise complexity for feasibility.
 
 
 Appendix/logs:
@@ -69,3 +73,5 @@ Tasks to be completed for next week:
 
 Resources used:
 https://p5js.org/reference/#/p5.FFT
+https://p5js.org/reference/ in general
+Daniel Shiffman (The Coding Train) on YouTube

@@ -5,6 +5,7 @@ function MainMenu() {
     this.y = height*(111/768); //y position of menu roughly equates to 15% of the given window height
     this.w = width*(426/1366);
     this.h = height*(546/768);
+    this.a = 255;
     this.buttons = []; //array to store button objects
     this.buttons.push(new MenuButton(this.x+(this.w/2), //x pos of menu + half width of button to centre it
                                      this.y+(this.h*(39/546))+(this.h*(64/546))/2, //y pos of menu + height from top of menu to top of button
@@ -30,11 +31,14 @@ function MainMenu() {
                                  this.y+(this.h*(344/546))+(this.h*(64/546))/2,
                                  this.w*(352/426),
                                  this.h*(64/546), 
-                                 "Opacity", BOTTOM);
+                                 "Menu opacity", BOTTOM);
 
 	this.keyPressed = function(keycode, key) {
 		if (keycode == key) {
 			this.menuDisplayed = !this.menuDisplayed;
+            if (visMenu.menuDisplayed == true) {
+                visMenu.menuDisplayed = false;
+            }
         }
 	}
 
@@ -42,12 +46,15 @@ function MainMenu() {
 		if (this.menuDisplayed) {
             push();
             noStroke();
-			fill(0, 201, 51);
+			fill(0, 201, 51, this.a);
             rect(this.x, this.y, this.w, this.h);
             for (i=0; i<this.buttons.length; i++) {
+                this.buttons[i].a = this.a;
                 this.buttons[i].draw();
             }
+            this.volumeSlider.a = this.a;
             this.volumeSlider.draw();
+            this.opacitySlider.a = this.a;
             this.opacitySlider.draw();
 		}
 	}
