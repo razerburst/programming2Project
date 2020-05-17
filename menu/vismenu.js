@@ -73,14 +73,15 @@ function VisMenu() {
         } else if (abs(oW-width) < abs(oH-height)) {
             this.y = height*(111/768);
             this.h = height*(546/768);
-            this.buttons[0].y = this.y+(this.h*(39/546))+(this.h*(64/546))/2;
-            this.buttons[1].y = this.y+(this.h*(141/546))+(this.h*(64/546))/2;
-            this.buttons[2].y = this.y+(this.h*(244/546))+(this.h*(64/546))/2;
-            this.buttons[3].y = this.y+(this.h*(347/546))+(this.h*(64/546))/2;
-            this.buttons[4].y = this.y+(this.h*(450/546))+(this.h*(64/546))/2;
+            this.buttons[0].y = this.y+(this.h*(39/656))+(this.h*(64/656))/2;
+            this.buttons[1].y = this.y+(this.h*(141/656))+(this.h*(64/656))/2;
+            this.buttons[2].y = this.y+(this.h*(244/656))+(this.h*(64/656))/2;
+            this.buttons[3].y = this.y+(this.h*(347/656))+(this.h*(64/656))/2;
+            this.buttons[4].y = this.y+(this.h*(450/656))+(this.h*(64/656))/2;
+            this.buttons[5].y = this.y+(this.h*(553/656))+(this.h*(64/656))/2;
             for (i=0; i<this.buttons.length; i++){
                 var button = this.buttons[i];
-                button.h = this.h*(64/546);
+                button.h = this.h*(64/656);
                 button.textSize = 46*(height/displayHeight);
             }
         }
