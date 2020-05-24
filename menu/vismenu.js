@@ -38,7 +38,7 @@ function VisMenu() {
                                      this.h*(64/656),
                                      "circle"));
 
-	this.keyPressed = function(keycode, key) {
+	this.keyPressed = function(keycode, key) { //detect whether the v key has been pressed to determine whether menu should be visible or not
 		if (keycode == key) {
 			this.menuDisplayed = !this.menuDisplayed;
             if (mainMenu.menuDisplayed == true) {

@@ -32,26 +32,17 @@ Considering the setbacks encountered as a result of personal circumstances, we w
 so that it can be completed in the available time.
 
 When must it be completed?
-18/05/20
+11/05/20
 But realistically it should be completed at least a day or two before then so that we can fix any problems that may arise before the deadline.
-
-Features implemented (so far):
--For the ridgeplots, the waves are scaled up greater towards their centres. Instead of there being a sharp increase in scale (from smallScale, 3, to bigScale, 40), it is now more gradual.
--Hue added for the ridgeplots
--Circle visualiser created
--Created two resizable menus with slider and button classes
--
 
 Plans for final project:
 -The parameters for each wave are randomised, dynamically changing graphics
 -Wave less jagged, more sine-wave like
 -Add colour gradient to make it look better
 -Randomly generated flowers on the screen with colour depending on amplitude and how spread depending on pitch, periodically change position
--
 
 Contingency plan:
 Compromise complexity for feasibility.
-
 
 Appendix/logs:
 Repo link: https://github.com/razerburst/programming2Project/commit/c2c7b017e0325d9d71d07e4a7feb0ad3307f0d08
@@ -70,6 +61,26 @@ Tasks not achieved/ problems encountered:
     -
 Tasks to be completed for next week:
     -
+
+Features implemented (so far):
+-For the ridgeplots, the waves are scaled up greater towards their centres. Instead of there being a sharp increase in scale (from smallScale, 3, to bigScale, 40), it is now more gradual.
+-Hue added for the ridgeplots
+-flowers visualiser created
+-Circle visualiser created
+-Created two resizable menus with slider and button classes
+
+Features that were going to be implemented:
+-visualisation where bars rise from the bottom of the screen that "kick" a ball around the screen
+-types of flowers for the flowers visualisation
+
+Code was structured using OOP. Each object to be rendered to the screen was broken down into smaller objects, which were given relevant methods.
+E.g. the menu was broken down into the menu box and the buttons inside it. Decomposition (factoring) was used to break down methods and classes into smaller and more workable tasks.
+
+Challenges faced, apart from personal circumstances, include converting the concepts and ideas for the visualisations into computable "animations", and figuring out what part of the
+visualisation to link the amplitude values to. It was also difficult to create the resize methods for the menus at first, because it was hard to calculate how much exactly to 
+reduce the size of the menus and buttons by when the width and height of the screen were both reduced. It was also difficult to translate the dimensions illustrator menu designs to code.
+The ridgeplots extension also gave us some trouble. Figuring out how much to "tune" the colours, hues and different parameters by to create a somewhat aesthetically pleasing effect required
+lots of testing.
 
 Resources used:
 https://p5js.org/reference/#/p5.FFT

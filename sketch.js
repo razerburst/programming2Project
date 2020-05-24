@@ -1,4 +1,4 @@
-//global for the controls and input
+//globals
 var mainMenu;
 var visMenu;
 //store visualisations in a container
@@ -11,13 +11,13 @@ var origWidth;
 var origHeight;
 var font;
 
-function preload() {
+function preload() { //load sound and other things before the sketch starts so that they're ready to use once the sketch loads
 	sound = loadSound('assets/stomper_reggae_bit.mp3');
     sound.playMode('restart');
     font = loadFont('assets/Helvetica.ttf');
 }
 
-function setup() {
+function setup() { //initialise globals, instantiate objects, create canvas and set modes for functions
     createCanvas(windowWidth, windowHeight);
     angleMode(DEGREES);
     origWidth = windowWidth;
@@ -44,14 +44,15 @@ function draw() {
 	background(0);
 	//draw the selected visualisation
 	vis.selectedVisual.draw();
+    //draw the menus
 	mainMenu.draw();
     visMenu.draw();
 }
 
-function mouseClicked() {
+function mouseClicked() { //executes once every time mouse clicked
     for (i=0; i<mainMenu.buttons.length; i++) {
         var button = mainMenu.buttons[i];
-        if (button.mousePressed() == true && mainMenu.menuDisplayed == true) {
+        if (button.mousePressed() == true && mainMenu.menuDisplayed == true) { //check if any menu button has been clicked
             if (button.text == "Play/Pause") {
                 if (sound.isLooping() == true) {
                     sound.pause();
@@ -88,10 +89,10 @@ function mouseClicked() {
                   //from https://p5js.org/reference/#/p5/mousePressed
 }
 
-function mousePressed() {
+function mousePressed() { //check if mouse has been pressed (not clicked, click is press then release)
     if (mainMenu.menuDisplayed == true) {
         if (mainMenu.volumeSlider.mouseCollide() == true) {
-            mainMenu.volumeSlider.isBeingPulled = true;
+            mainMenu.volumeSlider.isBeingPulled = true; //if slider being pulled, set it to pulled so that it pulls even when mouse is off slider
         }
         if (mainMenu.opacitySlider.mouseCollide() == true) {
             mainMenu.opacitySlider.isBeingPulled = true;
@@ -112,15 +113,16 @@ function mouseDragged() {
     return false;
 }
 
-function mouseReleased() {
+function mouseReleased() { //once released, not being pulled anymore
     mainMenu.volumeSlider.isBeingPulled = false;
     mainMenu.opacitySlider.isBeingPulled = false;
     return false;
 }
 
-function keyPressed() {
+function keyPressed() { //check if any keyboard keys have been pressed
 	mainMenu.keyPressed(keyCode, 77); //pass which key is being pressed and the code of the key required to perform the action
     visMenu.keyPressed(keyCode, 86);
+    //this part has been made redundant since menus have been completed but it wouldn't hurt to keep it here
     if (keyCode >=49 && keyCode <= 54) {
         var visNumber = keyCode - 49;
         vis.selectVisual(vis.visuals[visNumber].name); //49 to 54 are 1 to 6 respectively
@@ -131,10 +133,10 @@ function keyPressed() {
 //when the window has been resized. Resize canvas to fit 
 //if the visualisation needs to be resized call its onResize method
 function windowResized() {
-    var oldWidth = width;
+    var oldWidth = width; //dimensions of the window when the sketch first loads
     var oldHeight = height;
 	resizeCanvas(windowWidth, windowHeight);
-	if (vis.selectedVisual.hasOwnProperty('onResize')) {
+	if (vis.selectedVisual.hasOwnProperty('onResize')) { //if the current visual has an onResize method, call it
 		vis.selectedVisual.onResize();
 	}
     mainMenu.onResize(oldWidth, oldHeight);

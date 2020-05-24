@@ -33,7 +33,7 @@ function MainMenu() {
                                  this.h*(64/546), 
                                  "Menu opacity", BOTTOM);
 
-	this.keyPressed = function(keycode, key) {
+	this.keyPressed = function(keycode, key) { //detect whether the m key has been pressed to determine whether menu should be visible or not
 		if (keycode == key) {
 			this.menuDisplayed = !this.menuDisplayed;
             if (visMenu.menuDisplayed == true) {
@@ -49,9 +49,11 @@ function MainMenu() {
 			fill(0, 201, 51, this.a);
             rect(this.x, this.y, this.w, this.h);
             for (i=0; i<this.buttons.length; i++) {
+                //update opacity of buttons then draw them
                 this.buttons[i].a = this.a;
                 this.buttons[i].draw();
             }
+            //update opacity of sliders then draw them
             this.volumeSlider.a = this.a;
             this.volumeSlider.draw();
             this.opacitySlider.a = this.a;
@@ -74,7 +76,7 @@ function MainMenu() {
         } else if (abs(oW-width) < abs(oH-height)) {
             this.y = height*(111/768);
             this.h = height*(546/768);
-            this.buttons[0].y = this.y+(this.h*(39/546))+(this.h*(64/546))/2;
+            this.buttons[0].y = this.y+(this.h*(39/546))+(this.h*(64/546))/2; //each button height is different so need to update individually
             this.buttons[1].y = this.y+(this.h*(138/546))+(this.h*(64/546))/2;
             this.buttons[2].y = this.y+(this.h*(450/546))+(this.h*(64/546))/2;
             for (i=0; i<this.buttons.length; i++){
