@@ -45,7 +45,7 @@ Contingency plan:
 Compromise complexity for feasibility.
 
 Appendix/logs:
-Repo link: https://github.com/razerburst/programming2Project/commit/c2c7b017e0325d9d71d07e4a7feb0ad3307f0d08
+Repo link:
 
 Week 9:
 Tasks achieved:
@@ -81,6 +81,9 @@ visualisation to link the amplitude values to. It was also difficult to create t
 reduce the size of the menus and buttons by when the width and height of the screen were both reduced. It was also difficult to translate the dimensions illustrator menu designs to code.
 The ridgeplots extension also gave us some trouble. Figuring out how much to "tune" the colours, hues and different parameters by to create a somewhat aesthetically pleasing effect required
 lots of testing.
+
+If we were to do this again, we would definitely plan designs for the visualisations using a graphics rendering application like illustrator or photoshop before coding so that we would have some way of 
+visualising it in our heads before translating that to code. We didn't do this due to time constraints, but I think we could prioritise doing that for the next time.
 
 Resources used:
 https://p5js.org/reference/#/p5.FFT
